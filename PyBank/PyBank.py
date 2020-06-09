@@ -1,3 +1,4 @@
+#Source https://github.com/shrawantee/Python-PyBank-and-PyPoll
 #Import os and csv into Python
 import os
 import csv
@@ -10,7 +11,7 @@ final_profit=0
 total_profit=0
 total_changes=0
 count=0
-profit=[]
+profit=0
 date=[]
 monthly_change=[]
 greatest_increase=[]
@@ -24,9 +25,13 @@ with open(inputpath) as csvfile:
     for row in csvreader:
         count=count+1
 
+        total_profit=total_profit+int(row[1])
+
         date.append(row[0])
 
-        profit.append(row[1])
+        profit=int(row[1])- initial_profit
+
+        # initial_profit=int(row[1])
 
         total_profit=total_profit+int(row[1])
 
@@ -40,7 +45,7 @@ with open(inputpath) as csvfile:
 
         initial_profit=final_profit
 
-        average=round(sum(monthly_change)/len(monthly_change))
+        average=round(total_changes/count,2)
     #Using min and max to find greatest increase and decrease
         greatest_decrease=min(monthly_change)
         greatest_increase=max(monthly_change)
